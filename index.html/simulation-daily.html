@@ -252,11 +252,117 @@ social7: {
   text: "じゃあ...",
   next: "cPart"
 },
-
-// Cパート（仮）
 cPart: {
-  speaker: "ナレーション",
-  text: "【Cパートへ】"
+  speaker: "",
+  text: "",
+  choices: [
+    {
+      text: "① ディスカッションって役割分担とかあるんですか？",
+      next: "discussion1"
+    },
+
+    {
+      text: "② このゼミってどんな人がいるんですか？",
+      next: "people1"
+    }
+  ]
+},
+
+// ① 役割分担ルート
+discussion1: {
+  speaker: "先輩",
+  text: "あるよ。毎回班ごとに決めるんだ。",
+  next: "discussion2"
+},
+
+discussion2: {
+  speaker: "あなた",
+  text: "例えばどんな役割があるんですか？",
+  next: "discussion3"
+},
+
+discussion3: {
+  speaker: "先輩",
+  text: "発表者にタイムキーパー、進行役や記録係が主な役割だよ。最初は周りの先輩を頼るといいよ。",
+  next: "discussion4"
+},
+
+discussion4: {
+  speaker: "あなた",
+  text: "はい。そうします。",
+  next: "discussion5"
+},
+
+discussion5: {
+  speaker: "先輩",
+  text: "せっかくだから今日のThe Wall Street Journalを一緒に見てみようか。",
+  next: "discussion6"
+},
+
+discussion6: {
+  speaker: "あなた",
+  text: "はい。ありがとうございます。",
+  next: "dPart"
+},
+
+// ② どんな人がいる？ルート
+people1: {
+  speaker: "先輩",
+  text: "いろんな人がいるよ。",
+  next: "people2"
+},
+
+people2: {
+  speaker: "あなた",
+  text: "どんな人がいるんですか？",
+  next: "people3"
+},
+
+people3: {
+  speaker: "先輩",
+  text: "機嫌がいいと帰りにみんなにドーナツをおごってくれる人がいるよ。",
+  next: "people4"
+},
+
+people4: {
+  speaker: "あなた",
+  text: "楽しそうです。他にはどんな方がいるんですか？",
+  next: "people5"
+},
+
+people5: {
+  speaker: "先輩",
+  text: "インドネシアに帰省しているのにオンラインで馬券を買っている人がいるよ。",
+  next: "people6"
+},
+
+people6: {
+  speaker: "あなた",
+  text: "それはすごいですね。他にはどんな方が？",
+  next: "people7"
+},
+
+people7: {
+  speaker: "先輩",
+  text: "旅行好きで海外によく行ってお土産を買ってきてくれるんだけど、その買ってきてくれるお土産すべてが美味しくない人がいるよ。",
+  next: "people8"
+},
+
+people8: {
+  speaker: "あなた",
+  text: "小澤ゼミにはいろいろな人がいるんですね。",
+  next: "people9"
+},
+
+people9: {
+  speaker: "先輩",
+  text: "ｿｳﾀﾞﾖ。せっかくだし、このまま今日のThe Wall Street Journalを一緒に見てみようか。",
+  next: "people10"
+},
+people10: {
+  speaker: "あなた",
+  text: "はい。ありがとうございます。",
+  next: "dPart"
 },
 
   senior1: {
