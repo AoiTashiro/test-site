@@ -159,11 +159,72 @@ const scenes = {
     next: "bPart"
   },
 
-  // Bパート（仮）
-  bPart: {
-    speaker: "ナレーション",
-    text: "【Bパートへ】"
-  }
+ bPart: {
+  speaker: "ナレーション",
+  text: "バスが出発した。周りから楽しそうな笑い声が聞こえる。",
+  next: "b2"
+},
+
+b2: {
+  speaker: "同期",
+  text: "こっち席空いてるよ！",
+  next: "bChoice"
+},
+
+// 選択肢
+bChoice: {
+  speaker: "",
+  text: "",
+  choices: [
+    {
+      text: "① 何時に着くのか合宿スケジュールを確認しておく",
+      next: "schedule1"
+    },
+
+    {
+      text: "② 周りの人と雑談して盛り上がる",
+      next: "chat1"
+    }
+  ]
+},
+
+// ① スケジュール確認ルート
+schedule1: {
+  speaker: "あなた",
+  text: "13時ごろに着くのか、今日も長いし少し寝とこうかな",
+  next: "schedule2"
+},
+
+schedule2: {
+  speaker: "同期",
+  text: "今日も結構詰まってるんだね！私も少し寝とこうかな！",
+  next: "schedule3"
+},
+
+schedule3: {
+  speaker: "ナレーション",
+  text: "宿に到着し、ディスカッションが始まる。ディスカッションを終え----",
+  next: "cPart"
+},
+
+// ② 雑談ルート（仮）
+chat1: {
+  speaker: "同期",
+  text: "みんなで話してたらあっという間だね！！",
+  next: "chat2"
+},
+
+chat2: {
+  speaker: "ナレーション",
+  text: "宿に到着し、ディスカッションが始まる。ディスカッションを終え----",
+  next: "cPart"
+},
+
+// Cパート（仮）
+cPart: {
+  speaker: "ナレーション",
+  text: "【Cパートへ】"
+},
 
 };
 
