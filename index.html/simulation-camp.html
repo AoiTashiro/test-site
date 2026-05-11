@@ -97,15 +97,72 @@
 
 const scenes = {
 
+  // A集合
   start: {
-    speaker: "ナレーション",
-    text: "【小澤ゼミ 合宿編スタート】",
-    next: "scene1"
+    speaker: "同期１",
+    text: "おはよー！！結構みんな集まってきたね！",
+    next: "a2"
   },
 
-  scene1: {
+  a2: {
+    speaker: "同期２",
+    text: "まじで合宿楽しみだね！！部屋どんな感じなんだろ！",
+    next: "a3"
+  },
+
+  a3: {
+    speaker: "先輩",
+    text: "出発までまだもう少し時間あるから、トイレとか済ませといてねー！",
+    next: "aChoice"
+  },
+
+  // 選択肢
+  aChoice: {
+    speaker: "",
+    text: "",
+    choices: [
+      {
+        text: "① 友達とお昼ご飯を買いに行く",
+        next: "lunch1"
+      },
+
+      {
+        text: "② 10分前に到着して持ち物を確認しておく",
+        next: "check1"
+      }
+    ]
+  },
+
+  // ① コンビニルート
+  lunch1: {
+    speaker: "同期",
+    text: "コンビニ寄ろ！絶対途中でおなかすいちゃうわ！！",
+    next: "lunch2"
+  },
+
+  lunch2: {
     speaker: "あなた",
-    text: "（ここに最初のセリフを書く）"
+    text: "行こ！！お菓子買いたい！",
+    next: "bPart"
+  },
+
+  // ② 準備ルート
+  check1: {
+    speaker: "あなた",
+    text: "早めに着けてよかった～・・・",
+    next: "check2"
+  },
+
+  check2: {
+    speaker: "同期",
+    text: "もう準備終わってるの！はやっ！！",
+    next: "bPart"
+  },
+
+  // Bパート（仮）
+  bPart: {
+    speaker: "ナレーション",
+    text: "【Bパートへ】"
   }
 
 };
