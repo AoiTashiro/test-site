@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>小澤ゼミシミュレーション【合宿編】</title>
+
+  <style>
+    body {
+      margin: 0;
+      background-color: #444;
+      color: white;
+      font-family: sans-serif;
+      overflow: hidden;
+      height: 100vh;
+    }
+
+    /* 背景 */
+    .game-screen {
+      width: 100%;
+      height: 100vh;
+      position: relative;
+      background-color: #666;
+      background-size: cover;
+      background-position: center;
+    }
+
+    /* セリフ欄 */
+    .textbox {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      background: rgba(0,0,0,0.85);
+      padding: 30px;
+      box-sizing: border-box;
+      cursor: pointer;
+    }
+
+    /* 名前 */
+    #speaker {
+      color: gold;
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 15px;
+    }
+
+    /* セリフ */
+    #text {
+      font-size: 24px;
+      line-height: 1.8;
+    }
+
+    /* タップ表示 */
+    .tap {
+      text-align: right;
+      margin-top: 15px;
+      color: lightgray;
+    }
+
+    /* 選択肢 */
+    #choices {
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    button {
+      padding: 15px;
+      font-size: 18px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="game-screen">
+
+  <div class="textbox" onclick="nextText()">
+
+    <div id="speaker"></div>
+
+    <div id="text"></div>
+
+    <div class="tap">
+      ▼クリック
+    </div>
+
+  </div>
+
+</div>
+
+<script>
+
+const scenes = {
+
+  start: {
+    speaker: "ナレーション",
+    text: "【小澤ゼミ 合宿編スタート】",
+    next: "scene1"
+  },
+
+  scene1: {
+    speaker: "あなた",
+    text: "（ここに最初のセリフを書く）"
+  }
+
+};
+
+let currentScene = "start";
+
+function showScene() {
+
+  const scene = scenes[currentScene];
+
+  document.getElementById("speaker").textContent =
+    scene.speaker;
+
+  document.getElementById("text").textContent =
+    scene.text;
+
+  const oldChoices =
+    document.getElementById("choices");
+
+  if(oldChoices){
+    oldChoices.remove();
+  }
+
+  if(scene.choices){
+
+    const choiceBox =
+      document.createElement("div");
+
+    choiceBox.id = "choices";
+
+    scene.choices.forEach(choice => {
+
+      const button =
+        document.createElement("button");
+
+      button.textContent =
+        choice.text;
+
+      button.onclick = function(event){
+
+        event.stopPropagation();
+
+        currentScene =
+          choice.next;
+
+        showScene();
+      };
+
+      choiceBox.appendChild(button);
+    });
+
+    document.querySelector(".textbox")
+      .appendChild(choiceBox);
+  }
+}
+
+function nextText() {
+
+  const scene =
+    scenes[currentScene];
+
+  if(scene.choices){
+    return;
+  }
+
+  if(scene.next){
+    currentScene =
+      scene.next;
+
+    showScene();
+  }
+}
+
+showScene();
+
+</script>
+
+</body>
+</html>
