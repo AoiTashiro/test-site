@@ -150,11 +150,114 @@ const scenes = {
     text: "おう、よう来たな。そんな固くならんでええ。適当に座れ。",
     next: "seatPart"
   },
+seatPart: {
+  speaker: "あなた",
+  text: "どこに座ろうかな？",
+  next: "seatChoice"
+},
 
-  seatPart: {
-    speaker: "ナレーション",
-    text: "【B 教室入って座る席パートへ】"
-  },
+// 選択肢
+seatChoice: {
+  speaker: "",
+  text: "",
+  choices: [
+    {
+      text: "① 資料を読んでいる先輩のところに行く",
+      next: "logic1"
+    },
+
+    {
+      text: "② 話している先輩のところに行く",
+      next: "social1"
+    }
+  ]
+},
+
+// ① 真面目そうな先輩ルート
+logic1: {
+  speaker: "あなた",
+  text: "真面目そうだな。よし。",
+  next: "logic2"
+},
+
+logic2: {
+  speaker: "あなた",
+  text: "〇〇です。今日からよろしくお願いします。",
+  next: "logic3"
+},
+
+logic3: {
+  speaker: "先輩",
+  text: "よろしく。今日は初めて？",
+  next: "logic4"
+},
+
+logic4: {
+  speaker: "あなた",
+  text: "はい、今日が初めてです。",
+  next: "logic5"
+},
+
+logic5: {
+  speaker: "先輩",
+  text: "そっか。最初は緊張するよね。聞きたいことがあったらなんでも言ってね。",
+  next: "logic6"
+},
+
+logic6: {
+  speaker: "あなた",
+  text: "じゃあ...",
+  next: "cPart"
+},
+
+// ② 社交ルート
+social1: {
+  speaker: "あなた",
+  text: "賑やかそうだな。よし。",
+  next: "social2"
+},
+
+social2: {
+  speaker: "あなた",
+  text: "〇〇です！今日からよろしくお願いします！",
+  next: "social3"
+},
+
+social3: {
+  speaker: "A先輩",
+  text: "おぉ！これからよろしくね！！",
+  next: "social4"
+},
+
+social4: {
+  speaker: "B先輩",
+  text: "おぉ今日初めてか！そんな固くならなくて大丈夫よ。",
+  next: "social5"
+},
+
+social5: {
+  speaker: "あなた",
+  text: "すごく緊張してます。",
+  next: "social6"
+},
+
+social6: {
+  speaker: "A先輩",
+  text: "最初はみんなそんな感じだったよ。B先輩『わからないことあったら何でも聞いてくれい。』",
+  next: "social7"
+},
+
+social7: {
+  speaker: "あなた",
+  text: "じゃあ...",
+  next: "cPart"
+},
+
+// Cパート（仮）
+cPart: {
+  speaker: "ナレーション",
+  text: "【Cパートへ】"
+},
 
   senior1: {
     speaker: "先輩１",
