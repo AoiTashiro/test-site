@@ -89,37 +89,40 @@ button {
   </div>
 
 </div>
+<script>
 
-
-  {
-    speaker: "あなた",
-    text: "今日から経済学部最強の小澤ゼミが始まるぞ。まずは教室に向かおう。"
-  },
-
-  {
-    speaker: "ナレーション",
-    text: "歩き始めた足は教室に近づくにつれて軽くなる。気づかぬうちに新たな挑戦に心が昂っているのだろう。"
-  },
-
-  {
-    speaker: "ナレーション",
-    text: "そんなことを思っている間に教室に着いていた。"
-  },
-
- {
-    speaker: "ナレーション",
-    text: "教室の扉を開けた瞬間、新たな高みに踏み入ったことを自覚する。"
-  },
-
- 
+const scenes = {
 
   start: {
+    speaker: "あなた",
+    text: "今日から経済学部最強の小澤ゼミが始まるぞ。まずは教室に向かおう。",
+    next: "hall1"
+  },
+
+  hall1: {
+    speaker: "ナレーション",
+    text: "歩き始めた足は教室に近づくにつれて軽くなる。気づかぬうちに新たな挑戦に心が昂っているのだろう。",
+    next: "hall2"
+  },
+
+  hall2: {
+    speaker: "ナレーション",
+    text: "そんなことを思っている間に教室に着いていた。",
+    next: "hall3"
+  },
+
+  hall3: {
+    speaker: "ナレーション",
+    text: "教室の扉を開けた瞬間、新たな高みに踏み入ったことを自覚する。",
+    next: "greeting"
+  },
+
+  greeting: {
     speaker: "あなた",
     text: "よーしまずは...",
     next: "greetingChoice"
   },
 
-  // 選択肢画面
   greetingChoice: {
     speaker: "",
     text: "",
@@ -131,12 +134,11 @@ button {
 
       {
         text: "② ゼミ生に挨拶に行く",
-        next: "seniorWarning1"
+        next: "senior1"
       }
     ]
   },
 
-  // 正解ルート
   teacherGreeting: {
     speaker: "あなた",
     text: "小澤先生！本日からよろしくお願いします！",
@@ -149,26 +151,23 @@ button {
     next: "seatPart"
   },
 
-  // Bパート（仮）
   seatPart: {
     speaker: "ナレーション",
     text: "【B 教室入って座る席パートへ】"
   },
 
-  // 間違いルート
-  seniorWarning1: {
+  senior1: {
     speaker: "先輩１",
     text: "おいおい。先に先生への挨拶や。筋は通しとかねぇとな。",
-    next: "seniorWarning2"
+    next: "senior2"
   },
 
-  seniorWarning2: {
+  senior2: {
     speaker: "先輩２",
     text: "小澤先生をスルーとはとんでもない新入りが入ってきたもんやな。",
     next: "retryChoice"
   },
 
-  // 再選択
   retryChoice: {
     speaker: "",
     text: "",
@@ -180,7 +179,7 @@ button {
 
       {
         text: "② ゼミ生に挨拶に行く",
-        next: "seniorWarning1"
+        next: "senior1"
       }
     ]
   }
@@ -199,7 +198,6 @@ function showScene() {
   document.getElementById("text").textContent =
     scene.text;
 
-  // 古い選択肢を削除
   const oldChoices =
     document.getElementById("choices");
 
@@ -207,7 +205,6 @@ function showScene() {
     oldChoices.remove();
   }
 
-  // 選択肢表示
   if(scene.choices){
 
     const choiceBox =
@@ -262,37 +259,7 @@ showScene();
 
 </script>
 
-
-
-
-  {
-    speaker: "あなた",
-    text: "どこに座ろうかな？"
-  },
-
-    {
-    speaker: "あなた",
-    text: "どこに座ろうかな？"
-  }
-];
-
-let current = 0;
-
-function showText() {
-  document.getElementById("speaker").textContent =
-    story[current].speaker;
-
-  document.getElementById("text").textContent =
-    story[current].text;
-}
-
-function nextText() {
-  current++;
-
-  if(current < story.length) {
-    showText();
-  }
-}
+  
 
 showText();
 
