@@ -220,10 +220,262 @@ chat2: {
   next: "cPart"
 },
 
-// Cパート（仮）
 cPart: {
+  speaker: "同期１",
+  text: "ディスカッション疲れたねーー",
+  next: "c2"
+},
+
+c2: {
+  speaker: "同期２",
+  text: "夜ご飯まで少し時間あるみたいだけど、この後どうする？",
+  next: "cChoice"
+},
+
+// 選択肢
+cChoice: {
+  speaker: "",
+  text: "",
+  choices: [
+    {
+      text: "① 先に荷物整理を終わらせる",
+      next: "organize1"
+    },
+
+    {
+      text: "② 付近を探索してみる",
+      next: "explore1"
+    }
+  ]
+},
+
+// ① 荷物整理ルート
+organize1: {
+  speaker: "あなた",
+  text: "後でバタバタしたくないし、片づけとかお風呂の準備先にしておこう！！",
+  next: "dPart"
+},
+
+// ② 探索ルート
+explore1: {
+  speaker: "同期",
+  text: "徒歩15分ぐらいのとこにコンビニあるっぽいよ！",
+  next: "explore2"
+},
+
+explore2: {
+  speaker: "あなた",
+  text: "探索がてら行ってみよう！",
+  next: "dPart"
+},
+
+dPart: {
   speaker: "ナレーション",
-  text: "【Cパートへ】"
+  text: "大広間で夜ご飯。おいしそうなごはんがずらりと並んでいる。",
+  next: "d2"
+},
+
+d2: {
+  speaker: "先輩",
+  text: "席自由だから、好きなところ座ってー！",
+  next: "dChoice"
+},
+
+// 選択肢
+dChoice: {
+  speaker: "",
+  text: "",
+  choices: [
+    {
+      text: "① みんなとの会話を楽しむ",
+      next: "dTalk1"
+    },
+
+    {
+      text: "② 履修について先輩に聞く",
+      next: "dClass1"
+    }
+  ]
+},
+
+// ① 会話ルート
+dTalk1: {
+  speaker: "同期",
+  text: "このゼミ思ったより雰囲気良いよね！！",
+  next: "dTalk2"
+},
+
+dTalk2: {
+  speaker: "あなた",
+  text: "それ思った！先輩たちとも仲良くなれるのめっちゃいいよね！",
+  next: "ePart"
+},
+
+// ② 履修相談ルート
+dClass1: {
+  speaker: "あなた",
+  text: "おすすめの授業とかありますか？？",
+  next: "dClass2"
+},
+
+dClass2: {
+  speaker: "先輩",
+  text: "小澤先生の企画講座面白いよ！！",
+  next: "ePart"
+},
+
+ePart: {
+  speaker: "ナレーション",
+  text: "部屋に集まって飲み会が始まった。お酒を飲みながら話したり、カードゲームをしたり、みんな思い思いに過ごしている。",
+  next: "e2"
+},
+
+e2: {
+  speaker: "同期",
+  text: "もうこんな時間だ！そろそろ寝なくちゃ",
+  next: "e3"
+},
+
+e3: {
+  speaker: "あなた",
+  text: "時間が経つのがあっという間だね。おやすみ！",
+  next: "e4"
+},
+
+e4: {
+  speaker: "同期",
+  text: "おやすみ～",
+  next: "fPart"
+},
+
+// F 起床
+fPart: {
+  speaker: "ナレーション",
+  text: "合宿2日目の朝。アラームの音で目が覚める。",
+  next: "fChoice"
+},
+
+// 選択肢
+fChoice: {
+  speaker: "",
+  text: "",
+  choices: [
+    {
+      text: "① ぎりぎりまで寝てから朝食を食べに行く",
+      next: "sleepLate1"
+    },
+
+    {
+      text: "② 早起きして準備を終えてから朝食を食べる",
+      next: "early1"
+    }
+  ]
+},
+
+// ① ギリギリルート
+sleepLate1: {
+  speaker: "同期",
+  text: "おはよー！もうすぐ朝ご飯の時間だね！",
+  next: "sleepLate2"
+},
+
+sleepLate2: {
+  speaker: "あなた",
+  text: "夜更かししたからまだ眠いなあ。あと10分だけ寝よう…",
+  next: "gPart"
+},
+
+// ② 早起きルート
+early1: {
+  speaker: "あなた",
+  text: "そろそろ朝食だから支度をしよう！",
+  next: "gPart"
+},
+
+gPart: {
+  speaker: "ナレーション",
+  text: "午後は学年ゼミの発表だ。プレゼンに向けて班のメンバーと集まった。",
+  next: "gChoice"
+},
+
+// 選択肢
+gChoice: {
+  speaker: "",
+  text: "",
+  choices: [
+    {
+      text: "① メンバーとの会話を楽しみ、緊張をほぐす",
+      next: "gTalk1"
+    },
+
+    {
+      text: "② プレゼン内容の最終確認をする",
+      next: "gCheck1"
+    }
+  ]
+},
+
+// ① 会話ルート
+gTalk1: {
+  speaker: "同期",
+  text: "今日の自由時間なにして遊ぼっか～",
+  next: "gTalk2"
+},
+
+gTalk2: {
+  speaker: "あなた",
+  text: "みんなで買い物したり運動したりするのも楽しそう！緊張がほぐれてきた！",
+  next: "hPart"
+},
+
+// ② 最終確認ルート
+gCheck1: {
+  speaker: "あなた",
+  text: "最終確認もできたし、これでプレゼンはばっちりだ！",
+  next: "hPart"
+},
+
+hPart: {
+  speaker: "ナレーション",
+  text: "学年ゼミが終わり、自由時間がきた。",
+  next: "hChoice"
+},
+
+// 選択肢
+hChoice: {
+  speaker: "",
+  text: "",
+  choices: [
+    {
+      text: "① 体育館で遊ぶ",
+      next: "gym1"
+    },
+
+    {
+      text: "② 片づけをしてから体育館に向かう",
+      next: "clean1"
+    }
+  ]
+},
+
+// ① 体育館直行ルート
+gym1: {
+  speaker: "あなた",
+  text: "自由時間だ！体育館で遊ぼう！！",
+  next: "iPart"
+},
+
+// ② 片づけルート
+clean1: {
+  speaker: "同期",
+  text: "体育館で遊ぼう！何する！？",
+  next: "iPart"
+},
+
+// Iパート（仮）
+iPart: {
+  speaker: "ナレーション",
+  text: "【Iパートへ】"
 },
 
 };
