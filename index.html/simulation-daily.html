@@ -1,34 +1,128 @@
 <!DOCTYPE html>
-<html>
+<html lang="ja">
 <head>
-  <title>シュミレーション</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>小澤ゼミシミュレーション</title>
+
+  <!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>シミュレーション</title>
+
+  <style>
+    body {
+      margin: 0;
+      background: #444;
+      color: white;
+      font-family: sans-serif;
+      height: 100vh;
+    }
+
+    /* 背景 */
+    .game-screen {
+      width: 100%;
+      height: 100vh;
+      position: relative;
+      background-color: #666;
+    }
+
+    /* セリフ欄 */
+    .textbox {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      background: rgba(0,0,0,0.85);
+      padding: 25px;
+      box-sizing: border-box;
+      cursor: pointer;
+    }
+
+    /* 話者 */
+    #speaker {
+      color: gold;
+      font-size: 22px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    /* セリフ */
+    #text {
+      font-size: 22px;
+      line-height: 1.8;
+    }
+
+    /* タップ表示 */
+    .tap {
+      text-align: right;
+      margin-top: 10px;
+      color: lightgray;
+    }
+  </style>
 </head>
 <body>
 
-<h1>シミュレーション【小澤ゼミの日常編】</h1>
+<div class="game-screen">
 
-<p id="story">「今日から経済学部最強の小澤ゼミが始まるぞ。まずは教室に向かおう。」
-  (歩き始めた足は教室に近づくにつれて軽くなる。気づかぬうちに新たな挑戦に心が昂っているのだろう。)
+  <div class="textbox" onclick="nextText()">
 
-</p>
+    <div id="speaker"></div>
 
-<button onclick="choice1()">前の方に行こっと</button>
-<button onclick="choice2()">あ！後ろの方に○○さんがいる！</button>
+    <div id="text"></div>
+
+    <div class="tap">
+      ▼クリック
+    </div>
+
+  </div>
+
+</div>
 
 <script>
-function choice1() {
-  document.getElementById("story").innerText =
-    "早めに行ったことで準備ができ、発表もうまくいった！";
+
+const story = [
+
+  {
+    speaker: "主人公",
+    text: "セリフ１"
+  },
+
+  {
+    speaker: "ナレーション",
+    text: "セリフ２"
+  },
+
+  {
+    speaker: "先生",
+    text: "セリフ３"
+  }
+
+];
+
+let current = 0;
+
+function showText() {
+  document.getElementById("speaker").textContent =
+    story[current].speaker;
+
+  document.getElementById("text").textContent =
+    story[current].text;
 }
 
-function choice2() {
-  document.getElementById("story").innerText =
-    "ギリギリに行ってしまい、準備不足で焦ってしまった…。";
+function nextText() {
+  current++;
+
+  if(current < story.length) {
+    showText();
+  }
 }
+
+showText();
+
 </script>
-
-<br><br>
-<a href="activities.html">戻る</a>
 
 </body>
 </html>
+ 
