@@ -5,20 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>小澤ゼミシミュレーション</title>
 
-  <!DOCTYPE html>
-<html lang="ja">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>シミュレーション</title>
-
   <style>
     body {
       margin: 0;
-      background: #444;
+      background-color: #555;
       color: white;
       font-family: sans-serif;
       height: 100vh;
+      overflow: hidden;
     }
 
     /* 背景 */
@@ -35,33 +29,49 @@
       bottom: 0;
       width: 100%;
       background: rgba(0,0,0,0.85);
-      padding: 25px;
+      padding: 30px;
       box-sizing: border-box;
       cursor: pointer;
     }
 
-    /* 話者 */
+    /* 名前 */
     #speaker {
       color: gold;
-      font-size: 22px;
+      font-size: 24px;
       font-weight: bold;
-      margin-bottom: 10px;
+      margin-bottom: 15px;
     }
 
     /* セリフ */
     #text {
-      font-size: 22px;
+      font-size: 24px;
       line-height: 1.8;
     }
 
-    /* タップ表示 */
+    /* クリック表示 */
     .tap {
       text-align: right;
-      margin-top: 10px;
+      margin-top: 15px;
       color: lightgray;
     }
+
+    #choices {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+button {
+  padding: 15px;
+  font-size: 18px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
   </style>
 </head>
+
 <body>
 
 <div class="game-screen">
@@ -80,25 +90,190 @@
 
 </div>
 
-<script>
-
-const story = [
 
   {
-    speaker: "主人公",
-    text: "セリフ１"
+    speaker: "あなた",
+    text: "今日から経済学部最強の小澤ゼミが始まるぞ。まずは教室に向かおう。"
   },
 
   {
     speaker: "ナレーション",
-    text: "セリフ２"
+    text: "歩き始めた足は教室に近づくにつれて軽くなる。気づかぬうちに新たな挑戦に心が昂っているのだろう。"
   },
 
   {
-    speaker: "先生",
-    text: "セリフ３"
+    speaker: "ナレーション",
+    text: "そんなことを思っている間に教室に着いていた。"
+  },
+
+ {
+    speaker: "ナレーション",
+    text: "教室の扉を開けた瞬間、新たな高みに踏み入ったことを自覚する。"
+  },
+
+ 
+
+  start: {
+    speaker: "あなた",
+    text: "よーしまずは...",
+    next: "greetingChoice"
+  },
+
+  // 選択肢画面
+  greetingChoice: {
+    speaker: "",
+    text: "",
+    choices: [
+      {
+        text: "① 小澤先生に挨拶に行く",
+        next: "teacherGreeting"
+      },
+
+      {
+        text: "② ゼミ生に挨拶に行く",
+        next: "seniorWarning1"
+      }
+    ]
+  },
+
+  // 正解ルート
+  teacherGreeting: {
+    speaker: "あなた",
+    text: "小澤先生！本日からよろしくお願いします！",
+    next: "teacherReply"
+  },
+
+  teacherReply: {
+    speaker: "小澤先生",
+    text: "おう、よう来たな。そんな固くならんでええ。適当に座れ。",
+    next: "seatPart"
+  },
+
+  // Bパート（仮）
+  seatPart: {
+    speaker: "ナレーション",
+    text: "【B 教室入って座る席パートへ】"
+  },
+
+  // 間違いルート
+  seniorWarning1: {
+    speaker: "先輩１",
+    text: "おいおい。先に先生への挨拶や。筋は通しとかねぇとな。",
+    next: "seniorWarning2"
+  },
+
+  seniorWarning2: {
+    speaker: "先輩２",
+    text: "小澤先生をスルーとはとんでもない新入りが入ってきたもんやな。",
+    next: "retryChoice"
+  },
+
+  // 再選択
+  retryChoice: {
+    speaker: "",
+    text: "",
+    choices: [
+      {
+        text: "① 小澤先生に挨拶に行く",
+        next: "teacherGreeting"
+      },
+
+      {
+        text: "② ゼミ生に挨拶に行く",
+        next: "seniorWarning1"
+      }
+    ]
   }
 
+};
+
+let currentScene = "start";
+
+function showScene() {
+
+  const scene = scenes[currentScene];
+
+  document.getElementById("speaker").textContent =
+    scene.speaker;
+
+  document.getElementById("text").textContent =
+    scene.text;
+
+  // 古い選択肢を削除
+  const oldChoices =
+    document.getElementById("choices");
+
+  if(oldChoices){
+    oldChoices.remove();
+  }
+
+  // 選択肢表示
+  if(scene.choices){
+
+    const choiceBox =
+      document.createElement("div");
+
+    choiceBox.id = "choices";
+
+    scene.choices.forEach(choice => {
+
+      const button =
+        document.createElement("button");
+
+      button.textContent =
+        choice.text;
+
+      button.onclick = function(event){
+
+        event.stopPropagation();
+
+        currentScene =
+          choice.next;
+
+        showScene();
+      };
+
+      choiceBox.appendChild(button);
+    });
+
+    document.querySelector(".textbox")
+      .appendChild(choiceBox);
+  }
+}
+
+function nextText() {
+
+  const scene =
+    scenes[currentScene];
+
+  if(scene.choices){
+    return;
+  }
+
+  if(scene.next){
+    currentScene =
+      scene.next;
+
+    showScene();
+  }
+}
+
+showScene();
+
+</script>
+
+
+
+
+  {
+    speaker: "あなた",
+    text: "どこに座ろうかな？"
+  },
+
+    {
+    speaker: "あなた",
+    text: "どこに座ろうかな？"
+  }
 ];
 
 let current = 0;
@@ -125,4 +300,3 @@ showText();
 
 </body>
 </html>
- 
