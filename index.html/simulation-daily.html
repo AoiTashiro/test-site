@@ -364,6 +364,102 @@ people10: {
   text: "はい。ありがとうございます。",
   next: "dPart"
 },
+dPart: {
+  speaker: "ゼミ長",
+  text: "ディスカッション始めるよー！班作ってー！",
+  next: "dPart2"
+},
+
+dPart2: {
+  speaker: "あなた",
+  text: "誰と一緒の班になろうか？",
+  next: "groupChoice"
+},
+
+// 選択肢
+groupChoice: {
+  speaker: "",
+  text: "",
+  choices: [
+    {
+      text: "① 真面目そうな人のところに行く",
+      next: "serious1"
+    },
+
+    {
+      text: "② 雰囲気良さそうだな。あそこに行ってみるか。",
+      next: "friendly1"
+    }
+  ]
+},
+
+// ① 真面目そうな人ルート
+serious1: {
+  speaker: "C先輩",
+  text: "人数ちょうどいいからぜひぜひ。",
+  next: "serious2"
+},
+
+serious2: {
+  speaker: "C先輩",
+  text: "じゃあ簡単に自己紹介しますか。僕/私はC先輩で趣味は競馬だよ。でこっちがD先輩だよ。",
+  next: "serious3"
+},
+
+serious3: {
+  speaker: "D先輩",
+  text: "よろしく。趣味は漫画だよ。",
+  next: "serious4"
+},
+
+serious4: {
+  speaker: "あなた",
+  text: "〇〇です。よろしくお願いします。",
+  next: "serious5"
+},
+
+serious5: {
+  speaker: "ゼミ長",
+  text: "ディスカッション始めまーす。",
+  next: "ePart"
+},
+
+// ② 社交ルート
+friendly1: {
+  speaker: "あなた",
+  text: "雰囲気良さそうだな。あそこに行ってみるか！",
+  next: "friendly2"
+},
+
+friendly2: {
+  speaker: "D先輩",
+  text: "ちょうど人探してたところ！一緒にやろうか！！",
+  next: "friendly3"
+},
+
+friendly3: {
+  speaker: "D先輩",
+  text: "よろしくね！僕/私はDで趣味は漫画だよ。で、こっちがC先輩だよ。",
+  next: "friendly4"
+},
+
+friendly4: {
+  speaker: "C先輩",
+  text: "よろしく。趣味は競馬だよ。",
+  next: "friendly5"
+},
+
+friendly5: {
+  speaker: "ゼミ長",
+  text: "ディスカッション始めまーす。",
+  next: "ePart"
+},
+
+// Eパート（仮）
+ePart: {
+  speaker: "ナレーション",
+  text: "【Eパートへ】"
+},
 
   senior1: {
     speaker: "先輩１",
